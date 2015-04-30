@@ -64,4 +64,16 @@ public class Time implements Comparable {
         }
         return 0;
     }
+
+    public void somarHoras(int hora, int minuto) {
+        hours += hora;
+        int m = minutes + minuto;
+        if (m >= 60) {
+            int h = m/60;
+            hours += h;
+            minutes = m%60;
+        } else {
+            minutes = m;
+        }
+    }
 }

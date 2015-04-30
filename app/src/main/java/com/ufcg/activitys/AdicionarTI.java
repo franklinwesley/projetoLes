@@ -22,6 +22,7 @@ import com.example.franklinwesley.les.R;
 import com.ufcg.entities.Priority;
 import com.ufcg.entities.Task;
 import com.ufcg.entities.Time;
+import com.ufcg.entities.Week;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,11 +34,15 @@ import java.util.Locale;
 
 public class AdicionarTI extends ActionBarActivity implements View.OnClickListener {
 
+    private List<Task> tasks;
+    private Week semana;
+
     private EditText toDateEtxt;
     private EditText toTimeEtxt;
     private DatePickerDialog toDatePickerDialog;
     private TimePickerDialog toTimePickerDialog;
     private SimpleDateFormat dateFormatter;
+    Spinner tarefa;
 
     private String task;
     private int hora;
@@ -46,7 +51,7 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
     private int mes;
     private int dia;
     private Priority p;
-    private List<Task> tasks;
+
     private List<String> tarefas;
 
     @Override
@@ -55,6 +60,7 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         setContentView(R.layout.adicionar_ti);
 
         tasks = Task.getAllInstances();
+        semana = new Week();
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewsById();
@@ -62,19 +68,19 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
 
         tarefas = new ArrayList<String>();
         int tamanho;
-        if (tasks.size() > 12) {
-            tamanho = 12;
+        if (tasks.size() > 10) {
+            tamanho = 10;
         } else {
             tamanho = tasks.size();
         }
         tarefas.add("oi");
-        for (int i = 2; i < tamanho; i++) {
-            if (!tarefas.contains(tasks.get(tasks.size() - i).getName())) {
-                tarefas.add(tasks.get(tasks.size() - i).getName());
+        for (int i = 0; i < tamanho; i++) {
+            if (!tarefas.contains(tasks.get(i).getName())) {
+                tarefas.add(tasks.get(i).getName());
             }
         }
         tarefas.add("Adicionar nova Tarefa");
-        Spinner tarefa = (Spinner) findViewById(R.id.tarefas);
+        tarefa = (Spinner) findViewById(R.id.tarefas);
         spinner(tarefa,tarefas);
 
         List<String> p = new ArrayList<String>();
@@ -96,7 +102,6 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
                 String tarefa = parent.getItemAtPosition(pos).toString();
                 if (tarefa.equals("Adicionar nova Tarefa")) {
                     chamaTelaCadastro();
-                    spinner.setSelection(tarefas.size() - 2);
                 } else if (tarefa.equals(Priority.Alta.toString())) {
                     p = Priority.Alta;
                 } else if (tarefa.equals(Priority.Media.toString())) {
@@ -119,7 +124,9 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case 1:
-                tarefas.add(tarefas.size()-2, data.getExtras().getString("task"));
+                tarefas.add(0, data.getExtras().getString("task"));
+                task = data.getExtras().getString("task");
+                tarefa.setSelection(0);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,12 +134,13 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
 
     private void chamaTelaCadastro() {
         Intent i = new Intent(this, CadastroTarefa.class);
-        startActivityForResult(i,1);
+        startActivityForResult(i, 1);
     }
 
     public void onBtnClicked(View v){
         if(v.getId() == R.id.button){
             Task t = new Task(task, new Time(hora, minuto), p, new Date(ano,mes,dia));
+            semana.addActivity(t);
             this.finish();
         } else if (v.getId() == R.id.button2) {
             this.finish();

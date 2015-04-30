@@ -39,11 +39,11 @@ public class CadastroTarefa extends ActionBarActivity {
         Spinner spinner = (Spinner) findViewById(R.id.tarefas);
         ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, tarefas);
         lista.setAdapter(adaptador);
-        EditText txt = (EditText) findViewById(R.id.edit_text);
-        tarefa = txt.getText().toString();
     }
     public void onBtnClicked(View v){
         if(v.getId() == R.id.button2){
+            EditText txt = (EditText) findViewById(R.id.edit_text);
+            tarefa = txt.getText().toString();
             onBackPressed();
             this.finish();
         } else if (v.getId() == R.id.button1) {
