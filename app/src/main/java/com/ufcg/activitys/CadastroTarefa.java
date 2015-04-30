@@ -44,13 +44,19 @@ public class CadastroTarefa extends ActionBarActivity {
     }
     public void onBtnClicked(View v){
         if(v.getId() == R.id.button2){
-            Intent data = new Intent();
-            data.putExtra("task", tarefa);
-            setResult(2, data);
+            onBackPressed();
             this.finish();
         } else if (v.getId() == R.id.button1) {
             this.finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent it = new Intent();
+        it.putExtra("task", tarefa);
+        setResult(1, it);
+        super.onBackPressed();
     }
 
     @Override

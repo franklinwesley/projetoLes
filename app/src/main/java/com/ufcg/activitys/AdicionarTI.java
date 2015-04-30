@@ -62,13 +62,16 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
 
         tarefas = new ArrayList<String>();
         int tamanho;
-        if (tasks.size() > 10) {
-            tamanho = 10;
+        if (tasks.size() > 12) {
+            tamanho = 12;
         } else {
             tamanho = tasks.size();
         }
-        for (int i = 0; i < tamanho; i++) {
-            tarefas.add(tasks.get(tasks.size()-i).getName());
+        tarefas.add("oi");
+        for (int i = 2; i < tamanho; i++) {
+            if (!tarefas.contains(tasks.get(tasks.size() - i).getName())) {
+                tarefas.add(tasks.get(tasks.size() - i).getName());
+            }
         }
         tarefas.add("Adicionar nova Tarefa");
         Spinner tarefa = (Spinner) findViewById(R.id.tarefas);
@@ -112,15 +115,19 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode,
-                                 Intent data) {
-        tarefas.add(data.getExtras().getString("task"));
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                tarefas.add(tarefas.size()-2, data.getExtras().getString("task"));
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void chamaTelaCadastro() {
         Intent i = new Intent(this, CadastroTarefa.class);
         startActivityForResult(i,1);
-        onActivityResult(1,2,i);
     }
 
     public void onBtnClicked(View v){
