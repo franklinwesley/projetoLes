@@ -89,7 +89,7 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         List<String> p = new ArrayList<String>();
         p.add(Priority.Alta.toString());
         p.add(Priority.Media.toString());
-        p.add(Priority.Pequena.toString());
+        p.add(Priority.Baixa.toString());
         Spinner prioridade = (Spinner) findViewById(R.id.prioridade);
         spinner(prioridade,p);
     }
@@ -109,8 +109,8 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
                     p = Priority.Alta;
                 } else if (tarefa.equals(Priority.Media.toString())) {
                     p = Priority.Media;
-                } else if (tarefa.equals(Priority.Pequena.toString())) {
-                    p = Priority.Pequena;
+                } else if (tarefa.equals(Priority.Baixa.toString())) {
+                    p = Priority.Baixa;
                 } else {
                     task = tarefa;
                 }

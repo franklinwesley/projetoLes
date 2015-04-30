@@ -7,7 +7,7 @@ package com.ufcg.entities;
  */
 public enum Priority {
 
-    Pequena,
+    Baixa,
     Media,
     Alta;
 }
