@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.franklinwesley.les.R;
 
@@ -16,9 +17,20 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        Intent i = new Intent(this, Historico.class);
-        startActivity(i);
+    public void onBtnClicked(View v){
+        Intent i;
+        if(v.getId() == R.id.button){
+            i = new Intent(this, AdicionarTI.class);
+            startActivity(i);
+        } else if (v.getId() == R.id.button2) {
+            i = new Intent(this, AcompanhamentoSemanail.class);
+            startActivity(i);
+        } else if (v.getId() == R.id.button3) {
+            i = new Intent(this, Historico.class);
+            startActivity(i);
+        }
     }
 
     @Override

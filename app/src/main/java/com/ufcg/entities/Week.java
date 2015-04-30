@@ -13,6 +13,8 @@ import java.util.Map;
  */
 public class Week {
 
+    private static List<Week> allInstance = new ArrayList<Week>();
+
     private List<Task> activitiesInTheWeek;
     private Map< String, Time> activities;
     private Date initialDate;
@@ -24,6 +26,11 @@ public class Week {
         activitiesInTheWeek = new ArrayList<Task>();
         activities = new HashMap<String, Time>();
         initialDate = new Date();
+        allInstance.add(this);
+    }
+
+    public static List<Week> getAllInstance() {
+        return allInstance;
     }
 
     /**
@@ -38,6 +45,15 @@ public class Week {
         }else{
             activities.put(newTask.getName(), newTask.getTime());
         }
+    }
+
+    public Task getSpecificTask(String name){
+        for (Task t : getActivitiesInTheWeek()){
+            if(t.getName().equals(name)){
+                return t;
+            }
+        }
+        return null;
     }
 
     /**

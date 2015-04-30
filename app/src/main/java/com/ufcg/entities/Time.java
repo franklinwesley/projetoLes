@@ -76,4 +76,10 @@ public class Time implements Comparable {
             minutes = m;
         }
     }
+
+    @Override
+    public String toString(){
+        return getHours() +":" + getMinutes();
+    }
+
 }

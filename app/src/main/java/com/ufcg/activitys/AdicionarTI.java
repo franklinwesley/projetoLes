@@ -60,7 +60,11 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         setContentView(R.layout.adicionar_ti);
 
         tasks = Task.getAllInstances();
-        semana = new Week();
+        if (!Week.getAllInstance().isEmpty()) {
+            semana = Week.getAllInstance().get(Week.getAllInstance().size()-1);
+        } else {
+            semana = new Week();
+        }
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewsById();
@@ -73,7 +77,6 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         } else {
             tamanho = tasks.size();
         }
-        tarefas.add("oi");
         for (int i = 0; i < tamanho; i++) {
             if (!tarefas.contains(tasks.get(i).getName())) {
                 tarefas.add(tasks.get(i).getName());

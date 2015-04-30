@@ -28,6 +28,10 @@
             android:name="com.ufcg.activitys.Historico"
             android:label="@string/title_activity_historico" >
         </activity>
+        <activity
+            android:name="com.ufcg.activitys.AcompanhamentoSemanail"
+            android:label="@string/title_activity_acompanhamento_semanail" >
+        </activity>
     </application>
 
 </manifest>
