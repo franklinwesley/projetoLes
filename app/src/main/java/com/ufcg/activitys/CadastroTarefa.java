@@ -1,12 +1,20 @@
-package com.example.franklinwesley.les;
+package com.ufcg.activitys;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+
+import com.example.franklinwesley.les.R;
+import com.ufcg.entities.Priority;
+import com.ufcg.entities.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +22,32 @@ import java.util.List;
 
 public class CadastroTarefa extends ActionBarActivity {
 
+    private String tarefa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_tarefa);
+        setContentView(R.layout.cadastro_tarefa);
 
+        List<Task> t = Task.getAllInstances();
         List<String> tarefas = new ArrayList<String>();
-        tarefas.add("oi");
+        for (int i = 0; i < t.size(); i++) {
+            tarefas.add(t.get(i).getName());
+        }
         ListView lista = (ListView) findViewById(R.id.list);
+
+        Spinner spinner = (Spinner) findViewById(R.id.tarefas);
         ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1, tarefas);
         lista.setAdapter(adaptador);
+        EditText txt = (EditText) findViewById(R.id.edit_text);
+        tarefa = txt.getText().toString();
     }
     public void onBtnClicked(View v){
         if(v.getId() == R.id.button2){
-            //cria tarefa
+            Intent data = new Intent();
+            data.putExtra("task", tarefa);
+            setResult(2, data);
+            this.finish();
         } else if (v.getId() == R.id.button1) {
             this.finish();
         }

@@ -1,8 +1,7 @@
-package com.example.franklinwesley.les;
+package com.ufcg.activitys;
 
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -19,14 +18,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.example.franklinwesley.les.R;
+import com.ufcg.entities.Priority;
+import com.ufcg.entities.Task;
+import com.ufcg.entities.Time;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 
-public class AdicionarTIActivity extends ActionBarActivity implements View.OnClickListener {
+public class AdicionarTI extends ActionBarActivity implements View.OnClickListener {
 
     private EditText toDateEtxt;
     private EditText toTimeEtxt;
@@ -34,32 +39,52 @@ public class AdicionarTIActivity extends ActionBarActivity implements View.OnCli
     private TimePickerDialog toTimePickerDialog;
     private SimpleDateFormat dateFormatter;
 
+    private String task;
+    private int hora;
+    private int minuto;
+    private int ano;
+    private int mes;
+    private int dia;
+    private Priority p;
+    private List<Task> tasks;
+    private List<String> tarefas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.adicionar_ti);
+
+        tasks = Task.getAllInstances();
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewsById();
         setDateTimeField();
 
-        List<String> tarefas = new ArrayList<String>();
-        tarefas.add("oi");
+        tarefas = new ArrayList<String>();
+        int tamanho;
+        if (tasks.size() > 10) {
+            tamanho = 10;
+        } else {
+            tamanho = tasks.size();
+        }
+        for (int i = 0; i < tamanho; i++) {
+            tarefas.add(tasks.get(tasks.size()-i).getName());
+        }
         tarefas.add("Adicionar nova Tarefa");
         Spinner tarefa = (Spinner) findViewById(R.id.tarefas);
         spinner(tarefa,tarefas);
 
         List<String> p = new ArrayList<String>();
-        p.add("Alta");
-        p.add("Media");
-        p.add("Baixo");
+        p.add(Priority.Alta.toString());
+        p.add(Priority.Media.toString());
+        p.add(Priority.Pequena.toString());
         Spinner prioridade = (Spinner) findViewById(R.id.prioridade);
         spinner(prioridade,p);
     }
 
-    public void spinner(Spinner spinner, List<String> tarefas) {
+    public void spinner(final Spinner spinner, List<String> tasks) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item, tarefas);
+                (this, android.R.layout.simple_spinner_item, tasks);
         adapter.setDropDownViewResource
                 (android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -68,8 +93,18 @@ public class AdicionarTIActivity extends ActionBarActivity implements View.OnCli
                 String tarefa = parent.getItemAtPosition(pos).toString();
                 if (tarefa.equals("Adicionar nova Tarefa")) {
                     chamaTelaCadastro();
+                    spinner.setSelection(tarefas.size() - 2);
+                } else if (tarefa.equals(Priority.Alta.toString())) {
+                    p = Priority.Alta;
+                } else if (tarefa.equals(Priority.Media.toString())) {
+                    p = Priority.Media;
+                } else if (tarefa.equals(Priority.Pequena.toString())) {
+                    p = Priority.Pequena;
+                } else {
+                    task = tarefa;
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -77,14 +112,21 @@ public class AdicionarTIActivity extends ActionBarActivity implements View.OnCli
         });
     }
 
+    public void onActivityResult(int requestCode, int resultCode,
+                                 Intent data) {
+        tarefas.add(data.getExtras().getString("task"));
+    }
+
     private void chamaTelaCadastro() {
         Intent i = new Intent(this, CadastroTarefa.class);
-        startActivity(i);
+        startActivityForResult(i,1);
+        onActivityResult(1,2,i);
     }
 
     public void onBtnClicked(View v){
         if(v.getId() == R.id.button){
-            //cria tarefa
+            Task t = new Task(task, new Time(hora, minuto), p, new Date(ano,mes,dia));
+            this.finish();
         } else if (v.getId() == R.id.button2) {
             this.finish();
         }
@@ -121,6 +163,9 @@ public class AdicionarTIActivity extends ActionBarActivity implements View.OnCli
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 toDateEtxt.setText(dateFormatter.format(newDate.getTime()));
+                ano = year;
+                mes = monthOfYear;
+                dia = dayOfMonth;
             }
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
@@ -130,6 +175,8 @@ public class AdicionarTIActivity extends ActionBarActivity implements View.OnCli
                 newDate.set(hour, minute);
                 toTimeEtxt.setText(new StringBuilder().append(pad(hour))
                         .append(":").append(pad(minute)));
+                hora = hour;
+                minuto = minute;
             }
         },newCalendar.get(Calendar.HOUR), newCalendar.get(Calendar.MINUTE), true);
 
