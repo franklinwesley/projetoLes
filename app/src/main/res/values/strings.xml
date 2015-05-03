@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">les</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="btn_adicionar_atividade">Adicionar Atividade</string>
+    <string name="btn_acompanhamento_semanal">Acompanhamento Semanal</string>
+    <string name="btn_historico">Histórico</string>
     <string name="to_time">To Time</string>
     <string name="to_date">To Date</string>
     <string name="title_activity_cadastro_tarefa">CadastroTarefa</string>
