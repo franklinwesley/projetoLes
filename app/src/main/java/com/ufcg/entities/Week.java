@@ -1,6 +1,8 @@
-package com.ufcg.entities;
+﻿package com.ufcg.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,9 @@ public class Week {
     private List<Task> activitiesInTheWeek;
     private Map< String, Time> activities;
     private Date initialDate;
+    private Date endDate;
+    private Calendar calendar;
+
 
     /**
      * Contrutor.
@@ -25,8 +30,18 @@ public class Week {
     public Week(){
         activitiesInTheWeek = new ArrayList<Task>();
         activities = new HashMap<String, Time>();
-        initialDate = new Date();
+        createDates();
         allInstance.add(this);
+    }
+
+
+    /* cria as datas de inicio e fim da semana*/
+    private void createDates(){
+        calendar = Calendar.getInstance();
+        initialDate = new Date();
+        calendar.setTime(initialDate);
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 7);
+        endDate = calendar.getTime();
     }
 
     public static List<Week> getAllInstance() {
@@ -89,6 +104,8 @@ public class Week {
         return initialDate;
     }
 
+    public Date getEndDate() { return endDate;}
+
     public Map<String, Time> getAcivities(){
         return activities;
     }
@@ -97,5 +114,32 @@ public class Week {
         return activitiesInTheWeek;
     }
 
+    /**
+     * Retorna uma lista contendo as atividades realizadas pelo usuário em uma determinada data.
+     * @param date
+     * @return lista contendo as atividades
+     */
+    public List<Task> getActivitiesInDate(Date date){
+        List<Task> tasks = new ArrayList<Task>();
+        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+        for (Task t : getActivitiesInTheWeek()){
+            if(sd.format(t.getDate()).equals(sd.format(date))){
+                tasks.add(t);
+            }
+        }
+        return tasks;
+    }
+
+    /**
+     * Verifica se uma data recebida como paramentro pertence a está semana
+     * @param date - data que ira ser verificada
+     * @return - false se a data não pertence a essa semana, ou true, caso ela pertensa
+     */
+    public boolean isThisWeek(Date date){
+        if(date != null){
+            return date.after(initialDate) && date.before(endDate);
+        }
+        return false;
+    }
 
 }
