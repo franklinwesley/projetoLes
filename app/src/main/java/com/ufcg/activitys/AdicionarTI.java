@@ -62,6 +62,9 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         tasks = Task.getAllInstances();
         if (!Week.getAllInstance().isEmpty()) {
             semana = Week.getAllInstance().get(Week.getAllInstance().size()-1);
+            if(!semana.isThisWeek(new Date())){
+               semana = new Week();
+            }
         } else {
             semana = new Week();
         }

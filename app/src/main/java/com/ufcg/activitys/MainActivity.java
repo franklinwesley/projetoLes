@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
             i = new Intent(this, AdicionarTI.class);
             startActivity(i);
         } else if (v.getId() == R.id.btn_acompanhamento_semanal) {
-            i = new Intent(this, AcompanhamentoSemanail.class);
+            i = new Intent(this, AcompanhamentoSemanal.class);
             startActivity(i);
         } else if (v.getId() == R.id.btn_historico) {
             i = new Intent(this, Historico.class);

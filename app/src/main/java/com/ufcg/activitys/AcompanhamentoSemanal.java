@@ -12,7 +12,7 @@ import com.ufcg.entities.Week;
 
 import java.util.Date;
 
-public class AcompanhamentoSemanail extends ActionBarActivity {
+public class AcompanhamentoSemanal extends ActionBarActivity {
 
     private Week week;
 

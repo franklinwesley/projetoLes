@@ -28,7 +28,7 @@
             android:label="@string/title_activity_historico" >
         </activity>
         <activity
-            android:name="com.ufcg.activitys.AcompanhamentoSemanail"
+            android:name="com.ufcg.activitys.AcompanhamentoSemanal"
             android:label="@string/title_activity_acompanhamento_semanail" >
         </activity>
     </application>
