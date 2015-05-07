@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.franklinwesley.les" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.ufcg.activitys.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ufcg.activitys.CadastroTarefa"
+            android:label="@string/title_activity_cadastro_tarefa" >
+        </activity>
+        <activity
+            android:name="com.ufcg.activitys.AdicionarTI"
+            android:label="@string/title_activity_adicionar_ti" >
+        </activity>
+        <activity
+            android:name="com.ufcg.activitys.Historico"
+            android:label="@string/title_activity_historico" >
+        </activity>
+        <activity
+            android:name="com.ufcg.activitys.AcompanhamentoSemanail"
+            android:label="@string/title_activity_acompanhamento_semanail" >
+        </activity>
+    </application>
+
+</manifest>
