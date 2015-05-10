@@ -1,4 +1,4 @@
-﻿package com.ufcg.entities;
+package com.ufcg.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

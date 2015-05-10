@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.example.franklinwesley.les.R;
+import com.ufcg.R;
 
 
 public class MainActivity extends ActionBarActivity {

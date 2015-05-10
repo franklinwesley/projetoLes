@@ -13,7 +13,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.example.franklinwesley.les.R;
+
+import com.ufcg.R;
 import com.ufcg.entities.Priority;
 import com.ufcg.entities.Task;
 

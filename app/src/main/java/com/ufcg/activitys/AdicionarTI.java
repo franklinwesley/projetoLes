@@ -18,7 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import com.example.franklinwesley.les.R;
+
+import com.ufcg.R;
 import com.ufcg.entities.Priority;
 import com.ufcg.entities.Task;
 import com.ufcg.entities.Time;
@@ -63,7 +64,7 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
         if (!Week.getAllInstance().isEmpty()) {
             semana = Week.getAllInstance().get(Week.getAllInstance().size()-1);
             if(!semana.isThisWeek(new Date())){
-               semana = new Week();
+                semana = new Week();
             }
         } else {
             semana = new Week();
@@ -128,12 +129,14 @@ public class AdicionarTI extends ActionBarActivity implements View.OnClickListen
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1:
-                tarefas.add(0, data.getExtras().getString("task"));
-                task = data.getExtras().getString("task");
-                tarefa.setSelection(0);
-                break;
+        if (data != null && data.getExtras() != null) {
+            switch (requestCode) {
+                case 1:
+                    tarefas.add(0, data.getExtras().getString("task"));
+                    tarefa.setSelection(0);
+                    task = data.getExtras().getString("task");
+                    break;
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

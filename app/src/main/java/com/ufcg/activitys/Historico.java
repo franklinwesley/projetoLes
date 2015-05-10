@@ -7,7 +7,8 @@ import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.example.franklinwesley.les.R;
+
+import com.ufcg.R;
 import com.ufcg.entities.Priority;
 import com.ufcg.entities.Task;
 import com.ufcg.entities.Time;

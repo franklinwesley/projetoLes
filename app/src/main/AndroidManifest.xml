@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.franklinwesley.les" >
+    package="com.ufcg" >
 
     <application
         android:allowBackup="true"
@@ -8,28 +8,29 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ufcg.activitys.MainActivity"
+            android:name=".activitys.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ufcg.activitys.CadastroTarefa"
-            android:label="@string/title_activity_cadastro_tarefa" >
-        </activity>
-        <activity
-            android:name="com.ufcg.activitys.AdicionarTI"
+            android:name=".activitys.AdicionarTI"
             android:label="@string/title_activity_adicionar_ti" >
         </activity>
         <activity
-            android:name="com.ufcg.activitys.Historico"
+            android:name=".activitys.CadastroTarefa"
+            android:label="@string/title_activity_cadastro_tarefa" >
+        </activity>
+        <activity
+            android:name=".activitys.Historico"
             android:label="@string/title_activity_historico" >
         </activity>
         <activity
-            android:name="com.ufcg.activitys.AcompanhamentoSemanal"
-            android:label="@string/title_activity_acompanhamento_semanail" >
+            android:name=".activitys.AcompanhamentoSemanal"
+            android:label="@string/title_activity_acompanhamento_semanal" >
         </activity>
     </application>
 

@@ -11,4 +11,5 @@
     <string name="title_activity_adicionar_ti">AdicionarTI</string>
     <string name="title_activity_historico">Historico</string>
     <string name="title_activity_acompanhamento_semanail">AcompanhamentoSemanail</string>
+    <string name="title_activity_acompanhamento_semanal">AcompanhamentoSemanal</string>
 </resources>
