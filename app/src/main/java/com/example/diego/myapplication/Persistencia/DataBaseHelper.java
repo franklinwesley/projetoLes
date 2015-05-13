@@ -154,4 +154,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    public void removerTarefas(){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        String removerTarefas = "DELETE FROM tarefa";
+
+        db.execSQL(removerTarefas);
+
+        db.close();
+
+    }
+
+    public void resetarDB(){
+        removerAtividade();
+        removerTarefas();
+    }
 }

@@ -17,6 +17,7 @@
         <activity android:name=".Atividades.TarefasActivity"/>
         <activity android:name=".Atividades.EditarActivity"/>
         <activity android:name=".Atividades.AdicionarTempoActivity"/>
+        <activity android:name=".Atividades.ConfiguracaoActivity"/>
 
     </application>
 </manifest>

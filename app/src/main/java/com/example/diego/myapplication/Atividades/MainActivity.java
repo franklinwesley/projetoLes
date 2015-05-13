@@ -38,8 +38,8 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(this, TarefasActivity.class));
                 break;
 
-            case R.id.img_cong:
-                Toast.makeText(this, "CONFIGURAÇÕES", Toast.LENGTH_SHORT).show();
+            case R.id.img_conf:
+                startActivity(new Intent(this, ConfiguracaoActivity.class));
                 break;
         }
     }
