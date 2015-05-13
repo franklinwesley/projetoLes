@@ -27,11 +27,13 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
     }
     public void remove(Atividade item) {
         DataBaseHelper db = new DataBaseHelper(context);
+        int id = item.getId();
         int position = atividades.indexOf(item);
         atividades.remove(position);
         notifyItemRemoved(position);
-
+        db.removerAtividade(id);
     }
+
     public class TarefaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView nome;
@@ -44,8 +46,6 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
             this.mContext = mContext;
             itemView.setOnClickListener(this);
             nome =  (TextView) itemView.findViewById(R.id.txt_nome);
-            prioridade = (TextView) itemView.findViewById(R.id.txt_prioridade);
-
         }
         @Override
 
@@ -97,12 +97,11 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
     }
     @Override
     public void onBindViewHolder(TarefaViewHolder holder, int position) {
-        holder.nome.setText(atividades.get(position).getNome());
-        holder.prioridade.setText(atividades.get(position).getPrioridade());
+        holder.nome.setText(atividades.get(position).toString());
     }
+
     @Override
     public int getItemCount() {
         return atividades.size();
     }
-
 }

@@ -7,16 +7,25 @@ public class Atividade {
     private Tempo tempo;
     private String prioridade;
     private String categoria;
+    private int id;
 
     public Atividade() {
     }
 
-    public Atividade(String nome, Data data, Tempo tempo, String prioridade, String categoria) {
+    public Atividade(String nome, Data data, Tempo tempo, String prioridade, String categoria, int id) {
         this.nome = nome;
         this.prioridade = prioridade;
         this.data = data;
         this.tempo =  tempo;
         this.categoria = categoria;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCategoria() {
@@ -61,6 +70,10 @@ public class Atividade {
 
     @Override
     public String toString() {
-        return nome;
+        return  "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", prioridade='" + prioridade + '\'' +
+                ", categoria='" + categoria + '\'' +
+                '}';
     }
 }

@@ -127,11 +127,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 Tempo tempo = new Tempo();
                 Data data = new Data();
 
-                tempo.setHora(cursor.getInt(0));
-                tempo.setMinuto(cursor.getInt(1));
-                data.setAno(cursor.getInt(2));
-                data.setMes(cursor.getInt(3));
-                data.setDia(cursor.getInt(4));
+                atividade.setId(cursor.getInt(0));
+                tempo.setHora(cursor.getInt(1));
+                tempo.setMinuto(cursor.getInt(2));
+                data.setAno(cursor.getInt(3));
+                data.setMes(cursor.getInt(4));
+                data.setDia(cursor.getInt(5));
                 atividade.setPrioridade(cursor.getString(6));
                 atividade.setCategoria(cursor.getString(7));
                 atividade.setNome(cursor.getString(8));
@@ -144,11 +145,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return atividades;
     }
 
-    public void removerAtividade(){
+    public void removerTodasAtividade(){
 
         SQLiteDatabase db = getWritableDatabase();
 
         String removerAtividades = "DELETE FROM atividade";
+
+        db.execSQL(removerAtividades);
+
+        db.close();
+    }
+
+    public void removerAtividade(int id){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        String removerAtividades = "DELETE FROM atividade WHERE _id = "+id;
 
         db.execSQL(removerAtividades);
 
@@ -168,7 +180,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public void resetarDB(){
-        removerAtividade();
+        removerTodasAtividade();
         removerTarefas();
     }
 }

@@ -169,7 +169,7 @@ public class AdicionarTempoActivity extends Activity {
                 timePickerDialog.show();
                 break;
             case R.id.btn_adicionarTempo_salvar:
-                atividade = new Atividade(sp_tarefas.getSelectedItem().toString(), data, tempo, prioridade, categoria);
+                atividade = new Atividade(sp_tarefas.getSelectedItem().toString(), data, tempo, prioridade, categoria, 0);
                 db.inserirAtividade(atividade);
                 db.close();
             case R.id.btn_adicionarTempo_cancelar:
