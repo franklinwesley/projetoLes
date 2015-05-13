@@ -148,12 +148,9 @@ public class AdicionarTempoActivity extends Activity {
                             });
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
-
                     alertDialog.show();
 
                 }
-
-
             }
 
             @Override
@@ -161,8 +158,6 @@ public class AdicionarTempoActivity extends Activity {
 
             }
         });
-
-
     }
 
     public void onClick(View v){
@@ -192,7 +187,7 @@ public class AdicionarTempoActivity extends Activity {
                 categoria = "Lazer";
                 break;
             case R.id.rb_adicionarTempo_trabalho:
-                prioridade = "Trabalho";
+                categoria = "Trabalho";
                 break;
 
         }
