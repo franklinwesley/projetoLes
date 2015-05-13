@@ -19,9 +19,10 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
 
     private List<Atividade> atividades;
     private Context context;
+    DataBaseHelper db;
 
     public TarefaAdapater(Context context, List<Atividade> atividades){
-
+        this.db = new DataBaseHelper(context);
         this.context = context;
         this.atividades = atividades;
     }
@@ -65,13 +66,11 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
                     Atividade atividade = atividades.get(getPosition());
 
                     i.putExtra("nome", atividade.getNome());
-                    /**
                     i.putExtra("ano", atividade.getData().getAno());
                     i.putExtra("mes", atividade.getData().getMes());
                     i.putExtra("dia", atividade.getData().getDia());
                     i.putExtra("hora",atividade.getTempo().getHora());
                     i.putExtra("minuto", atividade.getTempo().getMinuto());
-                     **/
                     i.putExtra("prioridade", atividade.getPrioridade());
                     i.putExtra("categoria", atividade.getCategoria());
 

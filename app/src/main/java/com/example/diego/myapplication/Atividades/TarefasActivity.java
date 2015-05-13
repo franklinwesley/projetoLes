@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.example.diego.myapplication.Adaptadores.TarefaAdapater;
@@ -36,6 +37,8 @@ public class TarefasActivity extends Activity {
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TarefaAdapater(this, atividades);
+
+
         recycler.setAdapter(adapter);
 
     }

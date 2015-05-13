@@ -93,19 +93,24 @@ public class AdicionarTempoActivity extends Activity {
         Calendar newCalendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                edt_data.setText(year + ", " + monthOfYear + ", " + dayOfMonth);
                 ano = year;
                 mes = monthOfYear;
                 dia = dayOfMonth;
+                edt_data.setText(year + ", " + monthOfYear + ", " + dayOfMonth);
+                data.setAno(ano);
+                data.setMes(mes);
+                data.setDia(dia);
             }
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
 
         timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             public void onTimeSet(TimePicker view, int hour, int minute) {
-                edt_tempo.setText(hour + ":" + minute);
                 hora = hour;
                 minuto = minute;
+                edt_tempo.setText(hour + ":" + minute);
+                tempo.setHora(hora);
+                tempo.setMinuto(minuto);
             }
         },newCalendar.get(Calendar.HOUR), newCalendar.get(Calendar.MINUTE), true);
 
@@ -169,6 +174,8 @@ public class AdicionarTempoActivity extends Activity {
                 timePickerDialog.show();
                 break;
             case R.id.btn_adicionarTempo_salvar:
+                Log.i("DEBUG", tempo.toString());
+                Log.i("DEBUG", tempo.toString());
                 atividade = new Atividade(sp_tarefas.getSelectedItem().toString(), data, tempo, prioridade, categoria, 0);
                 db.inserirAtividade(atividade);
                 db.close();
@@ -189,7 +196,6 @@ public class AdicionarTempoActivity extends Activity {
             case R.id.rb_adicionarTempo_trabalho:
                 categoria = "Trabalho";
                 break;
-
         }
     }
 }

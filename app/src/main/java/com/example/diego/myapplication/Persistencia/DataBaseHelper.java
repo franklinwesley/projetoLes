@@ -137,6 +137,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 atividade.setCategoria(cursor.getString(7));
                 atividade.setNome(cursor.getString(8));
 
+                atividade.setData(data);
+                atividade.setTempo(tempo);
+
                 atividades.add(atividade);
 
             }while(cursor.moveToNext());
