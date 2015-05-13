@@ -1,15 +1,18 @@
 <resources>
-    <string name="app_name">les</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="btn_adicionar_atividade">Adicionar Atividade</string>
-    <string name="btn_acompanhamento_semanal">Acompanhamento Semanal</string>
-    <string name="btn_historico">Histórico</string>
-    <string name="to_time">To Time</string>
-    <string name="to_date">To Date</string>
-    <string name="title_activity_cadastro_tarefa">CadastroTarefa</string>
-    <string name="title_activity_adicionar_ti">AdicionarTI</string>
-    <string name="title_activity_historico">Historico</string>
-    <string name="title_activity_acompanhamento_semanail">AcompanhamentoSemanail</string>
-    <string name="title_activity_acompanhamento_semanal">AcompanhamentoSemanal</string>
+    <string name="app_name">My Application</string>
+
+    <string-array name="prioridade"> 2
+        <item>Alta</item>
+        <item>Média</item>
+        <item>Baixa</item>
+    </string-array>
+
+    <string-array name="tag"> 2
+        <item>aula</item>
+        <item>lazer</item>
+        <item>leitura</item>
+    </string-array>
+
+    <string name="prioridade">Prioridade!</string>
+
 </resources>
