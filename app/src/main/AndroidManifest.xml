@@ -18,6 +18,8 @@
         <activity android:name=".Atividades.EditarActivity"/>
         <activity android:name=".Atividades.AdicionarTempoActivity"/>
         <activity android:name=".Atividades.ConfiguracaoActivity"/>
+        <activity android:name=".Atividades.AcompanhamentoActivity"/>
+        <activity android:name=".Atividades.HistoricoActivity"/>
 
     </application>
 </manifest>

@@ -26,21 +26,20 @@ public class MainActivity extends Activity {
     public void onClick(View view){
 
         switch(view.getId()){
-            case R.id.img_acompanhamento_semanal:
-                Toast.makeText(this, "ACOMPANHAMENTO SEMANAL", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.img_historico:
-                Toast.makeText(this, "HISTÓRICO", Toast.LENGTH_SHORT).show();
-                break;
 
             case R.id.img_minhas_atividades:
                 startActivity(new Intent(this, TarefasActivity.class));
                 break;
-
+            case R.id.img_acompanhamento_semanal:
+                startActivity(new Intent(this, AcompanhamentoActivity.class));
+                break;
+            case R.id.img_historico:
+                startActivity(new Intent(this, HistoricoActivity.class));
+                break;
             case R.id.img_conf:
                 startActivity(new Intent(this, ConfiguracaoActivity.class));
                 break;
+
         }
     }
 }

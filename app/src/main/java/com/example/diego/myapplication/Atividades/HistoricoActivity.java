@@ -1,33 +1,27 @@
 package com.example.diego.myapplication.Atividades;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 
 
-public class ConfiguracaoActivity extends Activity {
+public class HistoricoActivity extends Activity {
 
-    DataBaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.configuracao_activity);
-
-        db = new DataBaseHelper(this);
+        setContentView(R.layout.historico_layout);
     }
 
     public void onClick(View v){
 
         switch (v.getId()){
 
-            case R.id.btn_comecar_do_zero:
-                db.resetarDB();
-                break;
+            case R.id.btn_historico_voltar:
+                finish();
         }
     }
 }
