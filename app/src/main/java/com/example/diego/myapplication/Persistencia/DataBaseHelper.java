@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.diego.myapplication.Entidades.Data;
 import com.example.diego.myapplication.Entidades.Atividade;
+import com.example.diego.myapplication.Entidades.Data;
 import com.example.diego.myapplication.Entidades.Tempo;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String NOME = "projeto LES";
-    private static final int VERSAO = 11;
+    private static final int VERSAO = 14;
 
     public DataBaseHelper(Context context) {
         super(context, NOME, null, VERSAO);
@@ -41,12 +41,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "nome_tarefa TEXT," +
                 "FOREIGN KEY(nome_tarefa) REFERENCES tarefa(nome)" +
                 ");");
+
+        db.execSQL("CREATE TABLE tag (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome TEXT," +
+                "nome_tarefa TEXT," +
+                "FOREIGN KEY(nome_tarefa) REFERENCES tarefa(nome)" +
+                ");");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE tarefa");
         db.execSQL("DROP TABLE atividade");
+        db.execSQL("DROP TABLE tag");
         onCreate(db);
     }
 
@@ -79,6 +87,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("nome_tarefa", atividade.getNome());
 
         db.insert("atividade", null, contentValues);
+        db.close();
+
+    }
+
+    public void atualizarAtividade(Atividade atividade){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        /**
+         contentValues.put("hora", atividade.getTempo().getHora());
+         contentValues.put("minuto", atividade.getTempo().getMinuto());
+         contentValues.put("ano", atividade.getData().getAno());
+         contentValues.put("mes", atividade.getData().getMes());
+         contentValues.put("dia", atividade.getData().getDia());
+         contentValues.put("prioridade", atividade.getPrioridade());
+         contentValues.put("categoria", atividade.getCategoria());
+         **/
+        contentValues.put("nome_tarefa", atividade.getNome());
+
+        db.update("atividade", contentValues, "_id="+atividade.getId(), null);
+
         db.close();
 
     }
@@ -181,6 +212,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
 
     }
+
 
     public void resetarDB(){
         removerTodasAtividade();

@@ -71,19 +71,22 @@
                 android:id="@+id/rb_editarAtividade_alta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alta"/>
+                android:text="Alta"
+                android:onClick="onClick"/>
 
             <RadioButton
                 android:id="@+id/rb_editarAtividade_media"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Média"/>
+                android:text="Média"
+                android:onClick="onClick"/>
 
             <RadioButton
                 android:id="@+id/rb_editarAtividade_baixa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Baixa"/>
+                android:text="Baixa"
+                android:onClick="onClick"/>
 
         </RadioGroup>
 
@@ -99,18 +102,19 @@
                 android:id="@+id/rb_editarAtividade_lazer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lazer"/>
+                android:text="Lazer"
+                android:onClick="onClick"/>
 
             <RadioButton
                 android:id="@+id/rb_editarAtividade_trabalho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trabalho"/>
+                android:text="Trabalho"
+                android:onClick="onClick"/>
 
         </RadioGroup>
 
     </LinearLayout>
-
 
     <LinearLayout
 
@@ -130,6 +134,7 @@
             android:drawSelectorOnTop="true">
         </Spinner>
 
+
     </LinearLayout>
 
     <Button
@@ -139,7 +144,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SALVAR"
-        android:layout_gravity="right|bottom"/>
+        android:layout_gravity="right|bottom"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/bt_editarAtividade_cancelar"
@@ -148,6 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CANCELAR"
-        android:layout_gravity="right|bottom"/>
+        android:layout_gravity="right|bottom"
+        android:onClick="onClick"/>
 
 </FrameLayout>

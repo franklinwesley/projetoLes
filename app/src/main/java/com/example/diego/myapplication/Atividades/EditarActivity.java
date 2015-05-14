@@ -5,7 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,14 +13,17 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.example.diego.myapplication.Entidades.Atividade;
+import com.example.diego.myapplication.Entidades.Data;
+import com.example.diego.myapplication.Entidades.Tempo;
+import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 
 import java.util.Calendar;
 import java.util.List;
 
 
-
-public class EditarActivity extends Activity implements View.OnClickListener {
+public class EditarActivity extends Activity {
 
     private TimePickerDialog timePickerDialog;
     private DatePickerDialog datePickerDialog;
@@ -37,14 +40,23 @@ public class EditarActivity extends Activity implements View.OnClickListener {
 
     private Spinner tag;
     private String nome, prioridade, categoria;
-    private int ano, mes, dia, hora, minuto;
+    private int ano, mes, dia, hora, minuto, id;
+
+    private Atividade atividade;
+    private Tempo tempo;
+    private Data data;
+
     List<String> tags;
+
+    DataBaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.editar_atividade);
+
+        db = new DataBaseHelper(this);
 
         edt_data = (EditText) findViewById(R.id.edt_editar_data);
         edt_tempo = (EditText) findViewById(R.id.edt_editar_tempo);
@@ -65,6 +77,7 @@ public class EditarActivity extends Activity implements View.OnClickListener {
         minuto = intent.getExtras().getInt("minuto");
         prioridade = intent.getExtras().getString("prioridade");
         categoria = intent.getExtras().getString("categoria");
+        id = intent.getExtras().getInt("id");
 
         if(prioridade.equals("Baixa")) {
             rb_baixa.setChecked(true);
@@ -100,18 +113,14 @@ public class EditarActivity extends Activity implements View.OnClickListener {
         spn1.setAdapter(spinnerAdapter);
          **/
 
-        edt_data.setInputType(InputType.TYPE_NULL);
-        edt_data.setOnClickListener(this);
-        edt_tempo.setInputType(InputType.TYPE_NULL);
-        edt_tempo.setOnClickListener(this);
-
         Calendar newCalendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 ano = year;
                 mes = monthOfYear;
                 dia = dayOfMonth;
-                edt_data.setText(dia + "/" + mes + "/" + ano);
+                data = new Data(ano, mes, dia);
+                edt_data.setText(ano + ", " + mes + ", " + dia);
             }
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
@@ -119,11 +128,12 @@ public class EditarActivity extends Activity implements View.OnClickListener {
             public void onTimeSet(TimePicker view, int hour, int minute) {
                 hora = hour;
                 minuto = minute;
+                tempo = new Tempo(hora, minuto);
                 edt_tempo.setText(hora + ":" + minuto);
+
             }
         },newCalendar.get(Calendar.HOUR), newCalendar.get(Calendar.MINUTE), true);
 
-        timePickerDialog.updateTime(0,0);
 
         /**
 
@@ -140,6 +150,7 @@ public class EditarActivity extends Activity implements View.OnClickListener {
             }
         });
          **/
+
     }
 
     public void onClick(View v){
@@ -151,9 +162,29 @@ public class EditarActivity extends Activity implements View.OnClickListener {
                 timePickerDialog.show();
                 break;
             case R.id.bt_editarAtividade_salvar:
+                Log.i("ID", ""+id);
+                atividade = new Atividade("HELPPP", data, tempo, prioridade, categoria, id);
+                db.atualizarAtividade(atividade);
+                finish();
                 break;
             case R.id.bt_editarAtividade_cancelar:
                 finish();
+                break;
+            case R.id.rb_editarAtividade_alta:
+                prioridade = "Alta";
+                break;
+            case R.id.rb_editarAtividade_media:
+                prioridade = "Media";
+                break;
+            case R.id.rb_editarAtividade_baixa:
+                prioridade = "Baixa";
+                break;
+            case R.id.rb_editarAtividade_lazer:
+                categoria = "Lazer";
+                break;
+            case R.id.rb_editarAtividade_trabalho:
+                categoria = "Trabalho";
+                break;
         }
     }
 }
