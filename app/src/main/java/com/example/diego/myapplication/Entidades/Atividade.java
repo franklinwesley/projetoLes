@@ -70,8 +70,8 @@ public class Atividade {
 
     @Override
     public String toString() {
-        return  nome + '\'' +
-                "Prioridade '" + prioridade + '\'' +
-                "Categoria '" + categoria;
+        return  " Atividade: " + nome + "\n" +
+                " Prioridade: " + prioridade + "\n" +
+                " Categoria: " + categoria;
     }
 }

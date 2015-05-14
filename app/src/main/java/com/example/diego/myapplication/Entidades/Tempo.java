@@ -28,12 +28,13 @@ public class Tempo {
         this.minuto = minuto;
     }
 
+    public int totalMinutos(){
+        return getHora()*60 + getMinuto();
+    }
+
     @Override
     public String toString() {
-        return "Tempo{" +
-                "hora=" + hora +
-                ", minuto=" + minuto +
-                '}';
+        return  hora + " + " + minuto;
     }
 
     public String toTempo() {
