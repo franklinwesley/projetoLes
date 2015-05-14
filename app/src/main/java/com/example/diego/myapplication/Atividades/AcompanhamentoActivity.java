@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.diego.myapplication.Entidades.Atividade;
-import com.example.diego.myapplication.Entidades.Data;
 import com.example.diego.myapplication.Entidades.Tempo;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
@@ -48,13 +47,9 @@ public class AcompanhamentoActivity extends Activity implements OnChartValueSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acompanhamento_layout);
 
-        //db = new DataBaseHelper(this);
+        db = new DataBaseHelper(this);
 
-        //atividades = db.selecinarTodasAtividades();
-
-        atividades = new ArrayList<>();
-        atividades.add(new Atividade("oi", new Data(), new Tempo(1,20), "Alta", "Lazer", 1));
-
+        atividades = db.selecinarTodasAtividades();
 
         pieGraph();
         barGraph();

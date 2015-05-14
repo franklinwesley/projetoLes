@@ -24,8 +24,8 @@ public class NotificationHelper extends BroadcastReceiver {
     }
 
     private long getAlarmTime() {
-        Integer hour = 23;
-        Integer minute = 30;
+        Integer hour = 22;
+        Integer minute = 00;
 
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTimeInMillis(System.currentTimeMillis());
