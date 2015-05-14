@@ -1,6 +1,7 @@
 package com.example.diego.myapplication.Atividades;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.diego.myapplication.Entidades.Atividade;
 import com.example.diego.myapplication.Entidades.Tempo;
+import com.example.diego.myapplication.Persistencia.BDHelper;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 import com.github.mikephil.charting.animation.Easing;
@@ -47,7 +49,10 @@ public class AcompanhamentoActivity extends Activity implements OnChartValueSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acompanhamento_layout);
 
-        db = new DataBaseHelper(this);
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+        BDHelper bd = new BDHelper(this);
+        db = bd.getBD(id);
 
         atividades = db.selecinarTodasAtividades();
 

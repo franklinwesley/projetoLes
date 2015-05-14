@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.diego.myapplication.Adaptadores.TarefaAdapater;
 import com.example.diego.myapplication.Entidades.Atividade;
+import com.example.diego.myapplication.Persistencia.BDHelper;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 
@@ -28,7 +29,10 @@ public class TarefasActivity extends Activity {
 
         setContentView(R.layout.tarefas_activity);
 
-         db = new DataBaseHelper(this);
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+        BDHelper bd = new BDHelper(this);
+        db = bd.getBD(id);
 
         atividades = db.selecinarTodasAtividades();
 
@@ -36,7 +40,7 @@ public class TarefasActivity extends Activity {
         registerForContextMenu(recycler);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TarefaAdapater(this, atividades);
+        adapter = new TarefaAdapater(this, atividades, id);
 
 
         recycler.setAdapter(adapter);

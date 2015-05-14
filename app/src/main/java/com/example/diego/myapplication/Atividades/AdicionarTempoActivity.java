@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.diego.myapplication.Entidades.Data;
 import com.example.diego.myapplication.Entidades.Atividade;
 import com.example.diego.myapplication.Entidades.Tempo;
+import com.example.diego.myapplication.Persistencia.BDHelper;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 import java.util.ArrayList;
@@ -67,7 +68,10 @@ public class AdicionarTempoActivity extends Activity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adicionar_tempo);
 
-        db = new DataBaseHelper(this);
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+        BDHelper bd = new BDHelper(this);
+        db = bd.getBD(id);
 
         nome_tarefas = new ArrayList<String>();
 

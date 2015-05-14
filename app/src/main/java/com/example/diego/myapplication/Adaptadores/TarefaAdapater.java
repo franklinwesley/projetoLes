@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.diego.myapplication.Atividades.EditarActivity;
 import com.example.diego.myapplication.Entidades.Atividade;
+import com.example.diego.myapplication.Persistencia.BDHelper;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
 
@@ -19,15 +20,20 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
 
     private List<Atividade> atividades;
     private Context context;
+    private String id;
     DataBaseHelper db;
 
-    public TarefaAdapater(Context context, List<Atividade> atividades){
-        this.db = new DataBaseHelper(context);
+    public TarefaAdapater(Context context, List<Atividade> atividades, String id){
+        BDHelper bd = new BDHelper(context);
+        DataBaseHelper db = bd.getBD(id);
+        this.id = id;
+        this.db = bd.getBD(id);
         this.context = context;
         this.atividades = atividades;
     }
     public void remove(Atividade item) {
-        DataBaseHelper db = new DataBaseHelper(context);
+        BDHelper bd = new BDHelper(context);
+        DataBaseHelper db = bd.getBD(id);
         int id = item.getId();
         int position = atividades.indexOf(item);
         atividades.remove(position);
