@@ -73,6 +73,7 @@ public class TarefaAdapater extends RecyclerView.Adapter<TarefaAdapater.TarefaVi
                     i.putExtra("minuto", atividade.getTempo().getMinuto());
                     i.putExtra("prioridade", atividade.getPrioridade());
                     i.putExtra("categoria", atividade.getCategoria());
+                    i.putExtra("id", atividade.getId());
 
                     context.startActivity(i);
 

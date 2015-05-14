@@ -164,7 +164,7 @@ public class EditarActivity extends Activity {
             case R.id.bt_editarAtividade_salvar:
                 Log.i("ID", ""+id);
                 atividade = new Atividade("HELPPP", data, tempo, prioridade, categoria, id);
-                db.atualizarAtividade(atividade);
+                int retorno = db.atualizarAtividade(atividade);
                 finish();
                 break;
             case R.id.bt_editarAtividade_cancelar:

@@ -91,7 +91,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void atualizarAtividade(Atividade atividade){
+    public int atualizarAtividade(Atividade atividade){
 
         SQLiteDatabase db = getWritableDatabase();
 
@@ -108,9 +108,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
          **/
         contentValues.put("nome_tarefa", atividade.getNome());
 
-        db.update("atividade", contentValues, "_id="+atividade.getId(), null);
+        String where = "_id = ?";
 
-        db.close();
+        String argumentos[] = { ""+atividade.getId() };
+
+        return db.update("atividade", contentValues, where, argumentos);
 
     }
 

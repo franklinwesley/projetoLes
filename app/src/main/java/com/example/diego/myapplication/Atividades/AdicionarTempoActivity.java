@@ -180,8 +180,6 @@ public class AdicionarTempoActivity extends Activity implements View.OnClickList
                 timePickerDialog.show();
                 break;
             case R.id.btn_adicionarTempo_salvar:
-                Log.i("DEBUG", tempo.toString());
-                Log.i("DEBUG", tempo.toString());
                 atividade = new Atividade(sp_tarefas.getSelectedItem().toString(), data, tempo, prioridade, categoria, 0);
                 db.inserirAtividade(atividade);
                 db.close();
