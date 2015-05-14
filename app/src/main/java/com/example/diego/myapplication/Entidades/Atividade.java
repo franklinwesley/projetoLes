@@ -70,10 +70,8 @@ public class Atividade {
 
     @Override
     public String toString() {
-        return  "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", prioridade='" + prioridade + '\'' +
-                ", categoria='" + categoria + '\'' +
-                '}';
+        return  nome + '\'' +
+                "Prioridade '" + prioridade + '\'' +
+                "Categoria '" + categoria;
     }
 }
