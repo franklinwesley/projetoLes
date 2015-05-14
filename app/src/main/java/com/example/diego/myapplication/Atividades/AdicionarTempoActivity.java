@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class AdicionarTempoActivity extends Activity {
+public class AdicionarTempoActivity extends Activity implements View.OnClickListener {
 
     TimePickerDialog timePickerDialog;
     DatePickerDialog datePickerDialog;
@@ -90,13 +91,18 @@ public class AdicionarTempoActivity extends Activity {
         data = new Data(0,0,0);
         tempo = new Tempo(0,0);
 
+        edt_data.setInputType(InputType.TYPE_NULL);
+        edt_data.setOnClickListener(this);
+        edt_tempo.setInputType(InputType.TYPE_NULL);
+        edt_tempo.setOnClickListener(this);
+
         Calendar newCalendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 ano = year;
                 mes = monthOfYear;
                 dia = dayOfMonth;
-                edt_data.setText(year + ", " + monthOfYear + ", " + dayOfMonth);
+                edt_data.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
                 data.setAno(ano);
                 data.setMes(mes);
                 data.setDia(dia);

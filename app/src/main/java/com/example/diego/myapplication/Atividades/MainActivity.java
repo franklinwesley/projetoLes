@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.diego.myapplication.Auxiliares.NotificationHelper;
+import com.example.diego.myapplication.Entidades.Atividade;
+import com.example.diego.myapplication.Entidades.Data;
 import com.example.diego.myapplication.Persistencia.DataBaseHelper;
 import com.example.diego.myapplication.R;
+
+import java.util.List;
 
 public class MainActivity extends Activity {
 
 
     DataBaseHelper db;
-
+    boolean notification = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,16 @@ public class MainActivity extends Activity {
 
         db = new DataBaseHelper(this);
 
+        boolean tempoHoje = false;
+        List<Atividade> t = db.selecinarTodasAtividades();
+        for (int i = 0; i < t.size(); i++) {
+            if (t.get(i).getData().equals(new Data())) {
+                tempoHoje = true;
+            }
+        }
+        if (!tempoHoje && notification) {
+            sendBroadcast(new Intent(this, NotificationHelper.class));
+        }
     }
 
     public void onClick(View view){

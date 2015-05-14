@@ -5,25 +5,22 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-
-import com.example.diego.myapplication.Entidades.Tag;
 import com.example.diego.myapplication.R;
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.List;
 
 
 
-public class EditarActivity extends Activity {
+public class EditarActivity extends Activity implements View.OnClickListener {
 
     private TimePickerDialog timePickerDialog;
     private DatePickerDialog datePickerDialog;
@@ -103,13 +100,18 @@ public class EditarActivity extends Activity {
         spn1.setAdapter(spinnerAdapter);
          **/
 
+        edt_data.setInputType(InputType.TYPE_NULL);
+        edt_data.setOnClickListener(this);
+        edt_tempo.setInputType(InputType.TYPE_NULL);
+        edt_tempo.setOnClickListener(this);
+
         Calendar newCalendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 ano = year;
                 mes = monthOfYear;
                 dia = dayOfMonth;
-                edt_data.setText(ano + ", " + mes + ", " + dia);
+                edt_data.setText(dia + "/" + mes + "/" + ano);
             }
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 

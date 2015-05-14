@@ -35,4 +35,8 @@ public class Tempo {
                 ", minuto=" + minuto +
                 '}';
     }
+
+    public String toTempo() {
+        return hora + ":" + minuto;
+    }
 }
